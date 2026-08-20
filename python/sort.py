@@ -66,7 +66,7 @@ def mergeSort( lst ):
 
     return result
 
-  mid = len( lst ) / 2
+  mid = int(len( lst ) / 2)
   left, right = lst[:mid], lst[mid:]
   left = mergeSort( left )
   right = mergeSort( right )
@@ -81,7 +81,7 @@ def quickSort( lst ):
     return lst
 
   # Naive pivot
-  pivot = lst.pop( len(lst) / 2 )
+  pivot = lst.pop( int(len(lst) / 2) )
   left = []
   right = []
   for l in lst:
