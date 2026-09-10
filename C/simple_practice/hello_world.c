@@ -7,11 +7,15 @@
 void hello_world();
 void numeric_operations();
 void control_flow();
+void pointers_practice();
+void structs_practice();
 
 int main(int argc, char * argv[]) {
     hello_world();
     numeric_operations();
     control_flow();
+    pointers_practice();
+    structs_practice();
     return(EXIT_SUCCESS);
 }
 
@@ -85,4 +89,47 @@ void control_flow() {
 
 error_handling:
     printf("Goto jump works\n");
+}
+
+void pointers_practice() {
+    int normalInt = 5;
+    int* pointerToInt = &normalInt;
+    int** pointerToPointerToInt = &pointerToInt;
+
+    assert(*pointerToInt == 5);
+    assert(**pointerToPointerToInt == 5);
+    printf("Done with pointer testing\n");
+
+    // Arrays are pointer heavy
+    int uninitializedArray[5];
+    int initializedArray[5] = {1, 2, 3, 4, 5};
+    assert(initializedArray[2] == 3);
+    //assert(uninitializedArray[3] == 1337); // accessing un-initialized array is possible!
+    //assert(initializedArray[10]); // OOB access!
+
+    for (int i = 0; i < 5; i++) {
+        uninitializedArray[i] = i;
+    }
+    assert(uninitializedArray[3] == 3);
+
+    int matrix[5][5] = {{1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}};
+    assert(matrix[2][3] == 4);
+    printf("Done with array testing\n");
+}
+
+void structs_practice() {
+    struct practiceStruct {
+        int myInt;
+        int* myIntPointer;
+    };
+    int someInt = 6;
+    struct practiceStruct myPS = {.myInt=5, .myIntPointer=&someInt};
+    printf("Struct myInt: %d\n", myPS.myInt);
+    printf("Struct myIntPointer: %d\n", *(myPS.myIntPointer));
+
+    typedef struct typedStruct {
+        char name[10];
+    } typedStruct;
+    typedStruct myTS = {.name="foobar"};
+    printf("Struct name: %s\n", myTS.name);
 }
